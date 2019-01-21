@@ -1,0 +1,20 @@
+1. composur intall
+2. using composure need to download yii- frame work
+3. login ui connect with db user detail service
+        1. create data base
+        2. create migration file ("php yii migrate/create create_user_table"  == format php, yii( deafult locate on project), action(migrate/create), create(keyword)_user(table name)_table(100% need keyword))
+        3.create relevant attribute of the table wish to create
+        4.execute migration file (using this command - > php yii migrate)
+4. configure time zone -> web.php
+5. Authentication
+    1. Modify user model
+    2. Create registration from
+            a. Create controller
+            b. Create from
+6. Employee
+    a. Create model
+    b. Create From
+7. Create registration controller ->
+        1. Need to create url path in SiteController.php (create new action) and other things
+        2. Create registration from
+        3. Add link to navigation bar
