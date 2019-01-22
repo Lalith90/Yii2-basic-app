@@ -6,7 +6,7 @@ use \yii\helpers\ArrayHelper;
 ?>
 
 <div class="col-sm-4 col-sm-offset-4">
-    <h1>Registration Form</h1>
+    <h1><? $title ?></h1>
 
     <?php $form = ActiveForm::begin();?>
     <?= $form->field($model,'name')->textInput(['placeholder'=>'Please enter your name']);?>
@@ -18,7 +18,7 @@ use \yii\helpers\ArrayHelper;
     <?= $form->field($model,'designation_id')->dropDownList(ArrayHelper::map($designation,'id','name'),['prompt'=>'Select a designation']);?>
     <?= $form->field($model,'description')->textarea();?>
 
-    <?=Html::submitButton('Add',['class'=>'btn btn-primary'])?>
+    <?=Html::submitButton($btnText,['class'=>'btn btn-primary'])?>
 
     <?php ActiveForm::end()?>
 

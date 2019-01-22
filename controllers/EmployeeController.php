@@ -40,8 +40,13 @@ class EmployeeController extends Controller
        $data['employee'] = Employee::find()->all();
        return $this->render('table', $data);
     }
-     public function actionView(){
-        return " ";
+     public function actionView($id){
+         $model = Employee::findOne($id);
+
+         $data = [];
+         $data['model'] = $model;
+         return $this->render('view', $data);
+
     }
      public function actionCreate(){
        $model = new Employee();
@@ -49,6 +54,8 @@ class EmployeeController extends Controller
        $data = [];
        $data['model'] = $model;
        $data['designation'] = Designation::find()->all();
+       $data['btnText'] = 'Add';
+       $data['title'] = 'Employee Creat Form';
 
        if ($model->load(\Yii::$app->request->post())){
                 $model->date = date('Y-m-d H:i:s');
@@ -62,11 +69,34 @@ class EmployeeController extends Controller
         return $this->render('form',$data);
        }
     }
-    public function actionUpdate(){
-        return " ";
+    public function actionUpdate($id){
+        $model = Employee::findOne($id);
+
+        $data = [];
+        $data['model'] = $model;
+        $data['designation'] = Designation::find()->all();
+        $data['btnText'] = 'Update';
+        $data['title'] = 'Update '.$model->name.' Details';
+
+        if ($model->load(\Yii::$app->request->post())){
+
+            if ($model->validate()){
+                $model->update();
+                return $this->redirect(['employee/index']);
+            }else{
+                return $this->render('form',$data);
+            }
+        }else{
+            return $this->render('form',$data);
+        }
+
     }
-    public function actionDelete(){
-        return " ";
+    public function actionDelete($id){
+	     /*$model = Employee::findOne($id);
+         $model->delete();   */
+	     Employee::findOne($id)->delete();
+
+        return $this->redirect(['employee/index']);
     }
 }
 
